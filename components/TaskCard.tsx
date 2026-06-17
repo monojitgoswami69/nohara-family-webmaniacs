@@ -82,8 +82,8 @@ export default function TaskCard({ task, onDelete }: TaskCardProps) {
           </div>
         </div>
 
-        {/* Decay Bar */}
-        <div className="absolute bottom-0 left-0 w-full h-[5px] bg-[#EFECE5]" />
+        {/* Progress bar container (empty track) */}
+        <div className="absolute bottom-0 left-0 w-full h-[5px] bg-[#E5E0D8]" />
         
         <motion.div
           className="absolute bottom-0 left-0 h-[5px] origin-left rounded-r-full"

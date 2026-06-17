@@ -87,7 +87,7 @@ export default function ClientApp() {
       <TaskInput onAdd={addTask} tasks={tasks} />
 
       {activeTasks.length > 0 && (
-        <div className="w-full mb-6 border-t-2 border-[#E5E0D8] pt-6">
+        <div className="w-full mt-16 mb-8 border-t-2 border-[#E5E0D8] pt-8">
           <h2 className="text-3xl font-sans font-bold text-primary tracking-tight">active.</h2>
         </div>
       )}

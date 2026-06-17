@@ -54,14 +54,10 @@ export default function PermanentTask({ task }: PermanentTaskProps) {
       </AnimatePresence>
 
       <div 
-        className="bg-permanent rounded-[12px] flex flex-col"
-        style={{ 
-          border: '2px solid #8FBCBB',
-        }}
+        className="border-2 border-[#8FBCBB] bg-permanent flex flex-col transition-colors relative overflow-hidden rounded-[12px]"
       >
         <div 
           className="p-4 flex flex-col rounded-[10px]"
-          style={{ borderBottom: '5px solid #8FBCBB' }}
         >
           <div className="flex justify-between items-start mb-4">
             <span className="text-[14px] font-bold text-[#2E3440] font-mono">

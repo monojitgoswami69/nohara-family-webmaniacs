@@ -111,7 +111,7 @@ export default function TaskInput({ onAdd, tasks }: TaskInputProps) {
   };
 
   return (
-    <div className="mb-2 relative w-full">
+    <div className="relative w-full z-20">
       <AnimatePresence>
         {showMidnight && (
           <motion.div
@@ -174,36 +174,40 @@ export default function TaskInput({ onAdd, tasks }: TaskInputProps) {
           </div>
         </div>
       </div>
-
-      <div className="min-h-[1.5rem] text-sm flex flex-col gap-1 mt-2">
-        <AnimatePresence>
-          {showStareMessage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2 }}
-              className="text-muted font-mono italic"
-            >
-              the task you are avoiding does not need to be typed to exist.
-            </motion.div>
+      {/* Absolute container to prevent layout space reserved for hints/flashes */}
+      <div className="absolute top-[100%] left-0 w-full pointer-events-none">
+        <div className="text-sm flex flex-col gap-1 mt-2">
+          <AnimatePresence>
+            {showStareMessage && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.2 }}
+                className="text-muted font-mono italic"
+              >
+                the task you are avoiding does not need to be typed to exist.
+              </motion.div>
+            )}
+          </AnimatePresence>
+          
+          {!showStareMessage && hasDeletedEverything && elapsedSeconds > 8 && (
+            <div className="text-warning font-mono italic text-sm">changed your mind. the clock did not.</div>
           )}
-        </AnimatePresence>
-        
-        {!showStareMessage && hasDeletedEverything && elapsedSeconds > 8 && (
-          <div className="text-warning font-mono italic text-sm">changed your mind. the clock did not.</div>
-        )}
 
-        {!showStareMessage && text.length > 200 && (
-          <div className="text-muted font-mono italic text-sm">at this point you are writing an essay not a task.</div>
-        )}
+          {!showStareMessage && text.length > 200 && (
+            <div className="text-muted font-mono italic text-sm">at this point you are writing an essay not a task.</div>
+          )}
+          
+          {!showStareMessage && text.length > 120 && text.length <= 200 && (
+            <div className="text-muted font-mono italic text-sm">long task. either genuinely complex or you are stalling.</div>
+          )}
+        </div>
         
-        {!showStareMessage && text.length > 120 && text.length <= 200 && (
-          <div className="text-muted font-mono italic text-sm">long task. either genuinely complex or you are stalling.</div>
-        )}
+        <div className="-mt-1 pointer-events-auto">
+          <FlashMessage message={flash} />
+        </div>
       </div>
-
-      <FlashMessage message={flash} />
     </div>
   );
 }
