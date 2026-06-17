@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTaskStore } from "../hooks/useTaskStore";
+import { Task } from "../lib/types";
 
-export default function DemoTool() {
+interface DemoToolProps {
+  tasks: Task[];
+  fastForwardTask: (id: string, hours: number) => void;
+  expireTask: (id: string) => void;
+}
+
+export default function DemoTool({ tasks, fastForwardTask, expireTask }: DemoToolProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const { tasks, fastForwardTask, expireTask } = useTaskStore();
 
   useEffect(() => {
     // Check initial state

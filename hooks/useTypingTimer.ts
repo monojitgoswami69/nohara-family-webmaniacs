@@ -21,7 +21,7 @@ export function useTypingTimer() {
         if (startTimeRef.current) {
           setElapsedMs(Date.now() - startTimeRef.current);
         }
-      }, 500);
+      }, 30);
     }
   }, [isActive, elapsedMs]);
 

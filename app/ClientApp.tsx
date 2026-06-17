@@ -15,7 +15,7 @@ import NotificationPrompt from "../components/NotificationPrompt";
 import DemoTool from "../components/DemoTool";
 
 export default function ClientApp() {
-  const { tasks, isLoaded, addTask, deleteTask, clearGraveyard } = useTaskStore();
+  const { tasks, isLoaded, addTask, deleteTask, clearGraveyard, fastForwardTask, expireTask } = useTaskStore();
 
   const now = Date.now();
   const activeTasks = tasks.filter((t) => t.permanent || !isTaskExpired(t, now));
@@ -81,7 +81,7 @@ export default function ClientApp() {
   if (!isLoaded) return null;
 
   return (
-    <main className="max-w-[680px] mx-auto px-4 sm:px-0 py-16">
+    <main className="max-w-[680px] mx-auto px-4 sm:px-0 py-8 sm:py-16">
       <Header tasks={tasks} />
       
       <TaskInput onAdd={addTask} tasks={tasks} />
@@ -112,7 +112,11 @@ export default function ClientApp() {
       
       <InstallBanner />
       <NotificationPrompt />
-      <DemoTool />
+      <DemoTool 
+        tasks={tasks} 
+        fastForwardTask={fastForwardTask} 
+        expireTask={expireTask} 
+      />
     </main>
   );
 }

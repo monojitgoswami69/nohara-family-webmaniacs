@@ -142,25 +142,23 @@ export default function TaskInput({ onAdd, tasks }: TaskInputProps) {
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mt-4 min-h-[2rem]">
           <div className="flex flex-col sm:flex-row sm:items-center text-sm font-bold w-full">
-            <div className="flex items-center min-h-[1.5rem] flex-1">
-              <AnimatePresence mode="popLayout">
-                {isActive && (
-                  <motion.span
-                    key={currentVerdict}
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="mr-2 text-accent"
-                  >
-                    {currentVerdict}
-                  </motion.span>
-                )}
-              </AnimatePresence>
+            <div className="flex items-start min-h-[1.5rem] flex-1 mt-1">
               {isActive && (
-                <span className="text-accent font-semibold">
-                  = {elapsedSeconds} days
-                </span>
+                <div className="flex items-start text-accent font-semibold font-mono leading-tight pr-4">
+                  <span className="shrink-0">{(elapsedMs / 1000).toFixed(2)}s</span>
+                  <span className="mx-2 opacity-50 font-normal shrink-0">|</span>
+                  <AnimatePresence mode="popLayout">
+                    <motion.span
+                      key={currentVerdict}
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                    >
+                      {currentVerdict}
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
               )}
             </div>
 

@@ -18,6 +18,16 @@ export const metadata: Metadata = {
   title: "gone.",
   description: "the to-do list that forgets on purpose",
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/favicons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicons/favicon-16x16.png", sizes: "16x16", type: "image/png" }
+    ],
+    apple: [
+      { url: "/favicons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ],
+    shortcut: "/favicons/favicon.ico"
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -29,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FFFDF5",
+  themeColor: "#FDFBF7",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
